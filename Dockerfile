@@ -47,10 +47,6 @@ RUN apt update -q && \
 # Set locale
 RUN locale-gen $LC_ALL
 
-### Add all install scripts for further steps
-ADD ./src/ $INST_SCRIPTS/
-RUN find $INST_SCRIPTS -name '*.sh' -exec chmod a+x {} +
-
 ### Install Chrome browser
 RUN ln -s /usr/bin/chromium-browser /usr/bin/google-chrome
 ### fix to start chromium in a Docker container, see https://github.com/ConSol/docker-headless-vnc-container/issues/2
