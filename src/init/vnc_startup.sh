@@ -2,7 +2,7 @@
 ### every exit != 0 fails the script
 set -e
 
-# should also source $STARTUPDIR/generate_container_user
+# should also source /init/generate_container_user
 source $HOME/.bashrc
 
 # add `--skip` to startup args, to skip the VNC startup procedure
@@ -14,7 +14,7 @@ if [[ $1 =~ --skip ]]; then
 fi
 
 ## write correct window size to chrome properties
-$STARTUPDIR/chrome-init.sh
+/init/chrome-init.sh
 
 ## resolve_vnc_connection
 VNC_IP=$(hostname -i)
