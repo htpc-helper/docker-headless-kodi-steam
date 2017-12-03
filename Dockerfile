@@ -10,21 +10,21 @@ ENV DISPLAY=:1 \
 
 ### Envrionment config
 ENV TERM=xterm \
-    STARTUPDIR=/dockerstartup \
-    INST_SCRIPTS=/tmp/install \
+    STARTUPDIR=/init \
     DEBIAN_FRONTEND=noninteractive \
     VNC_COL_DEPTH=24 \
     VNC_RESOLUTION=1920x1080 \
     VNC_PW=vncpassword \
     VNC_VIEW_ONLY=false \
     USER=htpc-helper \
+    HOME=/home/htpc-helper \
     UID=1100 \
     LANG="en_AU.UTF-8" \
     LANGUAGE="en_AU:en" \
     LC_ALL="en_AU.UTF-8"
 
 # Add USER
-RUN useradd -m -d "/home/${USER}" --uid $UID $USER
+RUN useradd -m -d $HOME --uid $UID $USER
 
 # Update and upgrade
 RUN apt update -q && \
@@ -56,10 +56,10 @@ RUN echo "CHROMIUM_FLAGS='--no-sandbox --start-maximized --user-data-dir'" > $HO
 ADD ./src/.config/ $HOME/.config/
 
 ### Configure startup
-ADD ./src/.config/ $STARTUPDIR/
+ADD ./src/init/ $STARTUPDIR/
 # add 'souce generate_container_user' to .bashrc
-RUN echo 'source $STARTUPDIR/generate_container_user' >> $HOME/.bashrc
-RUN find "$STARTUPDIR"/ -name '*.sh' -exec chmod -v a+x {} +
+RUN echo 'source ${STARTUPDIR}/generate_container_user' >> $HOME/.bashrc
+RUN find "${STARTUPDIR}/" -name '*.sh' -exec chmod -v a+x {} +
 
 ENTRYPOINT ["/${STARTUPDIR}/vnc_startup.sh"]
 CMD ["--tail-log"]
