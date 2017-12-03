@@ -37,6 +37,8 @@ RUN apt update -q && \
       chromium-codecs-ffmpeg \
       supervisor \
       xfce4 \
+      libnss-wrapper \
+      gettext \
       xterm && \
     apt purge -qy \
       pm-utils \
@@ -58,7 +60,9 @@ RUN echo "CHROMIUM_FLAGS='--no-sandbox --start-maximized --user-data-dir'" > $HO
 ADD ./src/.config/ $HOME/.config/
 
 ### configure startup
-RUN $INST_SCRIPTS/libnss_wrapper.sh
+# add 'souce generate_container_user' to .bashrc
+RUN echo 'source $STARTUPDIR/generate_container_user' >> $HOME/.bashrc
+
 RUN $INST_SCRIPTS/set_user_permission.sh $STARTUPDIR $HOME
 
 USER 1984
