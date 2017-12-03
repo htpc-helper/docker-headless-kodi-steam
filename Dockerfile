@@ -64,5 +64,5 @@ ADD ./src/init/ $STARTUPDIR/
 RUN echo 'source ${STARTUPDIR}/generate_container_user' >> $HOME/.bashrc
 RUN find "${STARTUPDIR}/" -name '*.sh' -exec chmod -v a+x {} +
 
-ENTRYPOINT ["/${STARTUPDIR}/vnc_startup.sh"]
+ENTRYPOINT ["/init/vnc_startup.sh"]
 CMD ["--tail-log"]
