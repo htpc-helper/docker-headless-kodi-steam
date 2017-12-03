@@ -54,8 +54,8 @@ RUN ln -s /usr/bin/chromium-browser /usr/bin/google-chrome
 ### fix to start chromium in a Docker container, see https://github.com/ConSol/docker-headless-vnc-container/issues/2
 RUN echo "CHROMIUM_FLAGS='--no-sandbox --start-maximized --user-data-dir'" > $HOME/.chromium-browser.init
 
-### Install xfce UI
-ADD ./src/common/xfce/ $HOME/
+### Configure UI
+ADD ./src/.config/ $HOME/.config/
 
 ### configure startup
 RUN $INST_SCRIPTS/libnss_wrapper.sh
