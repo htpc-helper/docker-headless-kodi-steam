@@ -34,7 +34,13 @@ RUN apt update -q && \
       tightvncserver \
       chromium-browser \
       chromium-browser-l10n \
-      chromium-codecs-ffmpeg
+      chromium-codecs-ffmpeg \
+      supervisor \
+      xfce4 \
+      xterm && \
+    apt purge -qy \
+      pm-utils \
+      xscreensaver*
 
 # Set locale
 RUN locale-gen $LC_ALL
@@ -49,7 +55,6 @@ RUN ln -s /usr/bin/chromium-browser /usr/bin/google-chrome
 RUN echo "CHROMIUM_FLAGS='--no-sandbox --start-maximized --user-data-dir'" > $HOME/.chromium-browser.init
 
 ### Install xfce UI
-RUN $INST_SCRIPTS/xfce_ui.sh
 ADD ./src/common/xfce/ $HOME/
 
 ### configure startup
