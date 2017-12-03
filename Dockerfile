@@ -4,9 +4,9 @@ FROM ubuntu:16.04
 MAINTAINER htpc-helper
 
 ## Connection ports for controlling the UI:
-# VNC port:5901
+# VNC port:5900
 ENV DISPLAY=:1 \
-    VNC_PORT=5901
+    VNC_PORT=5900
 
 ### Envrionment config
 ENV TERM=xterm \

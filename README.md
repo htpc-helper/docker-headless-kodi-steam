@@ -3,7 +3,7 @@
 Docker image is installed with the following components:
 
 * Desktop environment [**Xfce4**](http://www.xfce.org)
-* VNC-Server (default VNC port `5901`)
+* VNC-Server (default VNC port `5900`)
 * Chromium browser
 * Kodi
 * Steam
@@ -27,7 +27,7 @@ Build an image from scratch:
 
     docker build -t consol/centos-xfce-vnc centos-xfce-vnc
 
-=> connect via __VNC viewer `localhost:5901`__, default password: `vncpassword`
+=> connect via __VNC viewer `localhost:5900`__, default password: `vncpassword`
 
 ## Hints
 
