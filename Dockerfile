@@ -22,8 +22,7 @@ ENV HOME=/headless \
 WORKDIR $HOME
 
 ### Add all install scripts for further steps
-ADD ./src/common/install/ $INST_SCRIPTS/
-ADD ./src/ubuntu/install/ $INST_SCRIPTS/
+ADD ./src/ $INST_SCRIPTS/
 RUN find $INST_SCRIPTS -name '*.sh' -exec chmod a+x {} +
 
 ### Install some common tools
@@ -43,7 +42,6 @@ ADD ./src/common/xfce/ $HOME/
 
 ### configure startup
 RUN $INST_SCRIPTS/libnss_wrapper.sh
-ADD ./src/common/scripts $STARTUPDIR
 RUN $INST_SCRIPTS/set_user_permission.sh $STARTUPDIR $HOME
 
 USER 1984
