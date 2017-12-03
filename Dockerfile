@@ -40,8 +40,7 @@ RUN locale-gen $LC_ALL
 ADD ./src/ $INST_SCRIPTS/
 RUN find $INST_SCRIPTS -name '*.sh' -exec chmod a+x {} +
 
-### Install firefox and chrome browser
-RUN $INST_SCRIPTS/firefox.sh
+### Install Chrome browser
 RUN $INST_SCRIPTS/chrome.sh
 
 ### Install xfce UI
