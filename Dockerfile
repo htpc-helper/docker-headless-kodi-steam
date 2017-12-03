@@ -7,9 +7,7 @@ MAINTAINER htpc-helper
 # VNC port:5901
 # noVNC webport, connect via http://IP:6901/?password=vncpassword
 ENV DISPLAY=:1 \
-    VNC_PORT=5901 \
-    NO_VNC_PORT=6901
-EXPOSE $VNC_PORT $NO_VNC_PORT
+    VNC_PORT=5901
 
 ### Envrionment config
 ENV HOME=/headless \
