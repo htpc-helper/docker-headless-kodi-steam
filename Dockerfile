@@ -24,7 +24,7 @@ ENV TERM=xterm \
     LC_ALL="en_AU.UTF-8"
 
 # Add USER
-RUN useradd -m -d /headless --uid $UID $USER
+RUN useradd -m -d "/home/${USER}" --uid $UID $USER
 
 # Update and upgrade
 RUN apt update -q && \
