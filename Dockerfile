@@ -1,6 +1,6 @@
 # This Dockerfile is used to build an headles vnc image based on Ubuntu
 
-FROM ubuntu:16.04
+FROM phusion/baseimage
 MAINTAINER htpc-helper
 
 ## Connection ports for controlling the UI:
