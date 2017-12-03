@@ -61,7 +61,7 @@ ADD init/chrome-init.sh /etc/my_init.d/
 RUN mkdir /etc/service/vncviewer
 COPY init/vncviewer.sh /etc/service/vncviewer/run
 
-RUN mkdir /etc/service/xfcexs
-COPY init/xfce.sh /etc/service/xfce/run
+# RUN mkdir /etc/service/xfce
+# COPY init/xfce.sh /etc/service/xfce/run
 
 RUN chmod -R +x /etc/service

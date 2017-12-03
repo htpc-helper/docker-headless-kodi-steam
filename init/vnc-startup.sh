@@ -17,3 +17,14 @@ if [[ $VNC_VIEW_ONLY == "true" ]]; then
 fi
 echo "$VNC_PW" | vncpasswd -f >> $PASSWD_PATH
 chmod 600 $PASSWD_PATH
+
+echo -e "\n------------------ startup of Xfce4 window manager ------------------"
+
+### disable screensaver and power management
+xset -dpms &
+xset s noblank &
+xset s off &
+
+/sbin/setuser htpc-helper /usr/bin/startxfce4 --replace > $HOME/wm.log &
+sleep 1
+cat $HOME/wm.log
