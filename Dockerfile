@@ -10,7 +10,6 @@ ENV DISPLAY=:1 \
 
 ### Envrionment config
 ENV TERM=xterm \
-    STARTUPDIR=/init \
     DEBIAN_FRONTEND=noninteractive \
     VNC_COL_DEPTH=24 \
     VNC_RESOLUTION=1920x1080 \
@@ -59,10 +58,10 @@ RUN echo "CHROMIUM_FLAGS='--no-sandbox --start-maximized --user-data-dir'" > $HO
 ADD ./src/.config/ $HOME/.config/
 
 ### Configure startup
-ADD ./src/init/ $STARTUPDIR/
+ADD ./src/init/ /init/
 # add 'souce generate_container_user' to .bashrc
-RUN echo 'source ${STARTUPDIR}/generate_container_user' >> $HOME/.bashrc
-RUN find "${STARTUPDIR}/" -name '*.sh' -exec chmod -v a+x {} +
+RUN echo 'source /init/generate_container_user' >> $HOME/.bashrc
+RUN find "/init/" -name '*.sh' -exec chmod -v a+x {} +
 
 ENTRYPOINT ["/init/vnc_startup.sh"]
 CMD ["--tail-log"]
