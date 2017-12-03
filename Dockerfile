@@ -63,5 +63,11 @@ ADD ./src/init/ /init/
 RUN echo 'source /init/generate_container_user' >> $HOME/.bashrc
 RUN find "/init/" -name '*.sh' -exec chmod -v a+x {} +
 
-ENTRYPOINT ["/init/vnc_startup.sh"]
-CMD ["--tail-log"]
+# Configure runit
+RUN mkdir /etc/service/vncviewer
+COPY init/vncviewer.sh /etc/service/vncviewer/run
+
+RUN mkdir /etc/service/xfce
+COPY init/xfce.sh /etc/service/xfce/run
+
+RUN chmod -R +x /etc/service
