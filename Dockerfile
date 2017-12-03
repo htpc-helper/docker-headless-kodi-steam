@@ -30,7 +30,8 @@ RUN useradd -m -d "/home/${USER}" --uid $UID $USER
 RUN apt update -q && \
     apt upgrade -qy && \
     apt install \
-      locales
+      locales \
+      tightvncserver
 
 # Set locale
 RUN locale-gen $LC_ALL
@@ -38,9 +39,6 @@ RUN locale-gen $LC_ALL
 ### Add all install scripts for further steps
 ADD ./src/ $INST_SCRIPTS/
 RUN find $INST_SCRIPTS -name '*.sh' -exec chmod a+x {} +
-
-### Install xvnc-server & noVNC - HTML5 based VNC viewer
-RUN $INST_SCRIPTS/tigervnc.sh
 
 ### Install firefox and chrome browser
 RUN $INST_SCRIPTS/firefox.sh
