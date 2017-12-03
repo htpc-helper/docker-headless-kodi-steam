@@ -9,24 +9,35 @@ ENV DISPLAY=:1 \
     VNC_PORT=5901
 
 ### Envrionment config
-ENV HOME=/headless \
-    TERM=xterm \
+ENV TERM=xterm \
     STARTUPDIR=/dockerstartup \
-    INST_SCRIPTS=/headless/install \
+    INST_SCRIPTS=/tmp/install \
     DEBIAN_FRONTEND=noninteractive \
     VNC_COL_DEPTH=24 \
     VNC_RESOLUTION=1920x1080 \
     VNC_PW=vncpassword \
-    VNC_VIEW_ONLY=false
-WORKDIR $HOME
+    VNC_VIEW_ONLY=false \
+    USER=htpc-helper \
+    UID=1100 \
+    LANG="en_AU.UTF-8" \
+    LANGUAGE="en_AU:en" \
+    LC_ALL="en_AU.UTF-8"
+
+# Add USER
+RUN useradd -m -d /headless --uid $UID $USER
+
+# Update and upgrade
+RUN apt update -q && \
+    apt upgrade -qy && \
+    apt install \
+      locales
+
+# Set locale
+RUN locale-gen $LC_ALL
 
 ### Add all install scripts for further steps
 ADD ./src/ $INST_SCRIPTS/
 RUN find $INST_SCRIPTS -name '*.sh' -exec chmod a+x {} +
-
-### Install some common tools
-RUN $INST_SCRIPTS/tools.sh
-ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
 ### Install xvnc-server & noVNC - HTML5 based VNC viewer
 RUN $INST_SCRIPTS/tigervnc.sh
