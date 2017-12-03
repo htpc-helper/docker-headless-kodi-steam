@@ -30,14 +30,10 @@ RUN apt update -q && \
     apt upgrade -qy && \
     apt install -qy \
       locales \
+      xfce4 \
       chromium-browser \
       chromium-browser-l10n \
-      chromium-codecs-ffmpeg \
-      supervisor \
-      xfce4 \
-      libnss-wrapper \
-      gettext \
-      xterm && \
+      chromium-codecs-ffmpeg && \
     apt purge -qy \
       pm-utils \
       xscreensaver*
