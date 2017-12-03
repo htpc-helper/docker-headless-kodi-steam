@@ -55,19 +55,17 @@ RUN ln -s /usr/bin/chromium-browser /usr/bin/google-chrome
 RUN echo "CHROMIUM_FLAGS='--no-sandbox --start-maximized --user-data-dir'" > $HOME/.chromium-browser.init
 
 ### Configure UI
-ADD ./src/.config/ $HOME/.config/
+ADD ./.config/ $HOME/.config/
 
 ### Configure startup
-ADD ./src/init/ /init/
-# add 'souce generate_container_user' to .bashrc
-RUN echo 'source /init/generate_container_user' >> $HOME/.bashrc
-RUN find "/init/" -name '*.sh' -exec chmod -v a+x {} +
+ADD init/vnc-startup.sh /etc/my_init.d/
+ADD init/chrome-init.sh /etc/my_init.d/
 
 # Configure runit
 RUN mkdir /etc/service/vncviewer
 COPY init/vncviewer.sh /etc/service/vncviewer/run
 
-RUN mkdir /etc/service/xfce
+RUN mkdir /etc/service/xfcexs
 COPY init/xfce.sh /etc/service/xfce/run
 
 RUN chmod -R +x /etc/service
