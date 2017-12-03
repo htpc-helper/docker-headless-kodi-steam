@@ -62,10 +62,7 @@ ADD ./src/.config/ $HOME/.config/
 ### configure startup
 # add 'souce generate_container_user' to .bashrc
 RUN echo 'source $STARTUPDIR/generate_container_user' >> $HOME/.bashrc
-
-RUN $INST_SCRIPTS/set_user_permission.sh $STARTUPDIR $HOME
-
-USER 1984
+RUN find "$STARTUPDIR"/ -name '*.sh' -exec chmod -v a+x {} +
 
 ENTRYPOINT ["/dockerstartup/vnc_startup.sh"]
 CMD ["--tail-log"]
