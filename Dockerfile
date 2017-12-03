@@ -31,7 +31,6 @@ RUN apt update -q && \
     apt upgrade -qy && \
     apt install \
       locales \
-      tightvncserver \
       chromium-browser \
       chromium-browser-l10n \
       chromium-codecs-ffmpeg \
@@ -46,6 +45,10 @@ RUN apt update -q && \
 
 # Set locale
 RUN locale-gen $LC_ALL
+
+### Install TigerVNC
+RUN curl -o /tmp/tigervnc.tar.gz -L https://dl.bintray.com/tigervnc/stable/tigervnc-1.8.0.x86_64.tar.gz && \
+    tar xf /tmp/tigervnc.tar.gz -C / --strip 1
 
 ### Install Chrome browser
 RUN ln -s /usr/bin/chromium-browser /usr/bin/google-chrome
