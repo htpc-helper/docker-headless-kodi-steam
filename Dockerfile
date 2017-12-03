@@ -59,10 +59,11 @@ RUN echo "CHROMIUM_FLAGS='--no-sandbox --start-maximized --user-data-dir'" > $HO
 ### Configure UI
 ADD ./src/.config/ $HOME/.config/
 
-### configure startup
+### Configure startup
+ADD ./src/.config/ $STARTUPDIR/
 # add 'souce generate_container_user' to .bashrc
 RUN echo 'source $STARTUPDIR/generate_container_user' >> $HOME/.bashrc
 RUN find "$STARTUPDIR"/ -name '*.sh' -exec chmod -v a+x {} +
 
-ENTRYPOINT ["/dockerstartup/vnc_startup.sh"]
+ENTRYPOINT ["/${STARTUPDIR}/vnc_startup.sh"]
 CMD ["--tail-log"]
