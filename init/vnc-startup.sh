@@ -2,9 +2,6 @@
 ### every exit != 0 fails the script
 set -e
 
-# should also source /init/generate_container_user
-source $HOME/.bashrc
-
 ## resolve_vnc_connection
 VNC_IP=$(hostname -i)
 
