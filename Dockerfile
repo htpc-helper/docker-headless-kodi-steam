@@ -29,7 +29,7 @@ RUN useradd -m -d $HOME --uid $UID $USER
 # Update and upgrade
 RUN apt update -q && \
     apt upgrade -qy && \
-    apt install \
+    apt install -qy \
       locales \
       chromium-browser \
       chromium-browser-l10n \
