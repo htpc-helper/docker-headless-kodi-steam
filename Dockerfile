@@ -33,6 +33,9 @@ RUN apt install -qy \
       locales \
       xfce4
 
+# Set locale
+RUN locale-gen $LC_ALL
+
 # Install applications
 RUN apt install -qy \
       steam \
@@ -44,9 +47,6 @@ RUN apt install -qy \
     apt purge -qy \
       pm-utils \
       xscreensaver*
-
-# Set locale
-RUN locale-gen $LC_ALL
 
 ### Install TigerVNC
 RUN curl -o /tmp/tigervnc.tar.gz -L https://dl.bintray.com/tigervnc/stable/tigervnc-1.8.0.x86_64.tar.gz && \
