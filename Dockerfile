@@ -20,7 +20,7 @@ ENV DISPLAY=:1 \
 
 # Add USER
 RUN groupadd -g $UID $USER && \
-    useradd -m -d $HOME --uid $UID $USER -g $USER -G sudo $USER
+    useradd -m -d $HOME --uid $UID -g $USER -G sudo $USER
 
 # Update and upgrade
 RUN apt update -q && \
