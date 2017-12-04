@@ -3,13 +3,9 @@
 FROM phusion/baseimage
 MAINTAINER htpc-helper
 
-## Connection ports for controlling the UI:
-# VNC port:5900
-ENV DISPLAY=:1 \
-    VNC_PORT=5900
-
 ### Envrionment config
-ENV TERM=xterm \
+ENV DISPLAY=:1 \
+    TERM=xterm \
     DEBIAN_FRONTEND=noninteractive \
     VNC_COL_DEPTH=24 \
     VNC_RESOLUTION=1920x1080 \
