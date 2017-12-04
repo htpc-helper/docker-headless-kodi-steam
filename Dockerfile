@@ -60,10 +60,10 @@ ADD init/vnc-startup.sh /etc/my_init.d/
 ADD init/chrome-init.sh /etc/my_init.d/
 
 # Configure runit
-# RUN mkdir /etc/service/vncviewer
-# COPY init/vncviewer.sh /etc/service/vncviewer/run
+RUN mkdir /etc/service/vncviewer
+COPY init/vncviewer.sh /etc/service/vncviewer/run
 
 # RUN mkdir /etc/service/xfce
 # COPY init/xfce.sh /etc/service/xfce/run
 
-# RUN chmod -R +x /etc/service
+RUN chmod -R +x /etc/service
