@@ -23,7 +23,9 @@ ENV TERM=xterm \
     LC_ALL="en_AU.UTF-8"
 
 # Add USER
-RUN useradd -m -d $HOME --uid $UID $USER
+RUN groupadd -g $UID $USER && \
+    useradd -m -d $HOME --uid $UID $USER -g $USER -G sudo $USER && \
+    mkdir /home/$USER/.vnc
 
 # Update and upgrade
 RUN apt update -q && \
@@ -58,10 +60,10 @@ ADD init/vnc-startup.sh /etc/my_init.d/
 ADD init/chrome-init.sh /etc/my_init.d/
 
 # Configure runit
-RUN mkdir /etc/service/vncviewer
-COPY init/vncviewer.sh /etc/service/vncviewer/run
+# RUN mkdir /etc/service/vncviewer
+# COPY init/vncviewer.sh /etc/service/vncviewer/run
 
 # RUN mkdir /etc/service/xfce
 # COPY init/xfce.sh /etc/service/xfce/run
 
-RUN chmod -R +x /etc/service
+# RUN chmod -R +x /etc/service
