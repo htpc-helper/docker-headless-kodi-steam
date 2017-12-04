@@ -22,7 +22,8 @@ ENV DISPLAY=:1 \
 RUN useradd -m -d $HOME --uid $UID $USER
 
 # Add repos
-RUN apt-add-repository ppa:team-xbmc/ppa
+RUN apt-add-repository ppa:team-xbmc/ppa && \
+    dpkg --add-architecture i386
 
 # Update and upgrade
 RUN apt update -q && \
