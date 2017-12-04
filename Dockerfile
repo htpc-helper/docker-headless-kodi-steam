@@ -37,6 +37,7 @@ RUN apt install -qy \
 RUN apt install -qy \
       steam \
       kodi \
+      kodi-pvr-hts \
       chromium-browser \
       chromium-browser-l10n \
       chromium-codecs-ffmpeg && \
