@@ -51,17 +51,6 @@ RUN locale-gen $LC_ALL
 RUN curl -o /tmp/tigervnc.tar.gz -L https://dl.bintray.com/tigervnc/stable/tigervnc-1.8.0.x86_64.tar.gz && \
     tar xf /tmp/tigervnc.tar.gz -C / --strip 1
 
-### Install Chrome browser
-RUN ln -s /usr/bin/chromium-browser /usr/bin/google-chrome
-### fix to start chromium in a Docker container, see https://github.com/ConSol/docker-headless-vnc-container/issues/2
-RUN echo "CHROMIUM_FLAGS='--no-sandbox --start-maximized --user-data-dir'" > $HOME/.chromium-browser.init
-
-### Configure startup
-#ADD init/vnc-startup.sh /etc/my_init.d/
-ADD init/chrome-init.sh /etc/my_init.d/
-#ADD init/xstartup /home/$USER/.vnc/xstartup
-RUN chmod +x /etc/my_init.d/*
-
 # Configure runit
 RUN mkdir /etc/service/vncviewer
 COPY init/vncviewer.sh /etc/service/vncviewer/run
