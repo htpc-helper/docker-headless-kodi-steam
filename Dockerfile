@@ -49,11 +49,12 @@ RUN ln -s /usr/bin/chromium-browser /usr/bin/google-chrome
 RUN echo "CHROMIUM_FLAGS='--no-sandbox --start-maximized --user-data-dir'" > $HOME/.chromium-browser.init
 
 ### Configure UI
-ADD ./.config/ $HOME/.config/
+#ADD ./.config/ $HOME/.config/
 
 ### Configure startup
 ADD init/vnc-startup.sh /etc/my_init.d/
 ADD init/chrome-init.sh /etc/my_init.d/
+ADD init/xstartup /home/$USER/.vnc/xstartup
 
 # Configure runit
 RUN mkdir /etc/service/vncviewer
