@@ -18,9 +18,8 @@ ENV DISPLAY=:1 \
     LANGUAGE="en_AU:en" \
     LC_ALL="en_AU.UTF-8"
 
-# Add USER
-RUN groupadd -g $UID $USER && \
-    useradd -m -d $HOME --uid $UID -g $USER -G sudo $USER
+# Add user
+RUN useradd -m -d $HOME --uid $UID $USER
 
 # Update and upgrade
 RUN apt update -q && \
@@ -28,7 +27,6 @@ RUN apt update -q && \
     apt install -qy \
       locales \
       xfce4 \
-      sudo \
       chromium-browser \
       chromium-browser-l10n \
       chromium-codecs-ffmpeg && \
