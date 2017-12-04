@@ -55,6 +55,7 @@ RUN echo "CHROMIUM_FLAGS='--no-sandbox --start-maximized --user-data-dir'" > $HO
 ADD init/vnc-startup.sh /etc/my_init.d/
 ADD init/chrome-init.sh /etc/my_init.d/
 ADD init/xstartup /home/$USER/.vnc/xstartup
+RUN chmod +x /etc/my_init.d/* /home/$USER/.vnc/xstartup
 
 # Configure runit
 RUN mkdir /etc/service/vncviewer
