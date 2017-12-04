@@ -22,8 +22,7 @@ ENV DISPLAY=:1 \
 RUN useradd -m -d $HOME --uid $UID $USER
 
 # Add repos
-RUN apt-add-repository ppa:team-xbmc/ppa && \
-    apt-add-repository multiverse
+RUN apt-add-repository ppa:team-xbmc/ppa
 
 # Update and upgrade
 RUN apt update -q && \
