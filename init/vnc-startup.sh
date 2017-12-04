@@ -16,15 +16,17 @@ if [[ $VNC_VIEW_ONLY == "true" ]]; then
     echo $(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 20) | vncpasswd -f > $PASSWD_PATH
 fi
 echo "$VNC_PW" | vncpasswd -f >> $PASSWD_PATH
+# Change ownership of documents dir
+chown -R $USER:$USER $HOME
 chmod 600 $PASSWD_PATH
 
-echo -e "\n------------------ startup of Xfce4 window manager ------------------"
+# echo -e "\n------------------ startup of Xfce4 window manager ------------------"
 
-### disable screensaver and power management
-xset -dpms &
-xset s noblank &
-xset s off &
+# ### disable screensaver and power management
+# xset -dpms &
+# xset s noblank &
+# xset s off &
 
-/sbin/setuser htpc-helper /usr/bin/startxfce4 --replace > $HOME/wm.log &
-sleep 1
-cat $HOME/wm.log
+# /sbin/setuser htpc-helper /usr/bin/startxfce4 --replace > $HOME/wm.log &
+# sleep 1
+# cat $HOME/wm.log

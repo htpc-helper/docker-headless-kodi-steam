@@ -24,8 +24,7 @@ ENV TERM=xterm \
 
 # Add USER
 RUN groupadd -g $UID $USER && \
-    useradd -m -d $HOME --uid $UID $USER -g $USER -G sudo $USER && \
-    mkdir /home/$USER/.vnc
+    useradd -m -d $HOME --uid $UID $USER -g $USER -G sudo $USER
 
 # Update and upgrade
 RUN apt update -q && \
@@ -33,6 +32,7 @@ RUN apt update -q && \
     apt install -qy \
       locales \
       xfce4 \
+      sudo \
       chromium-browser \
       chromium-browser-l10n \
       chromium-codecs-ffmpeg && \
