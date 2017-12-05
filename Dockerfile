@@ -23,7 +23,8 @@ RUN useradd -m -d $HOME --uid $UID $USER
 
 # Add repos
 RUN apt-add-repository ppa:team-xbmc/ppa && \
-    dpkg --add-architecture i386
+    dpkg --add-architecture i386 && \
+    dpkg --configure -a
 
 # Update and upgrade
 RUN apt update -q && \
