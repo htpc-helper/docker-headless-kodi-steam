@@ -53,6 +53,6 @@ RUN curl -o /tmp/tigervnc.tar.gz -L https://dl.bintray.com/tigervnc/stable/tiger
     tar xf /tmp/tigervnc.tar.gz -C / --strip 1
 
 # Configure runit
-RUN mkdir /etc/service/vncviewer
-COPY init/vncviewer.sh /etc/service/vncviewer/run
+RUN mkdir /etc/service/vncserver
+COPY init/vncserver.sh /etc/service/vncserver/run
 RUN chmod -R +x /etc/service
