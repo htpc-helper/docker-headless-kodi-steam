@@ -3,14 +3,11 @@
 FROM phusion/baseimage
 MAINTAINER htpc-helper
 
-### Envrionment config
+### Environment config
 ENV DISPLAY=:1 \
+    VNC_COL_DEPTH=24 \
     TERM=xterm \
     DEBIAN_FRONTEND=noninteractive \
-    VNC_COL_DEPTH=24 \
-    VNC_RESOLUTION=1920x1080 \
-    VNC_PW=vncpassword \
-    VNC_VIEW_ONLY=false \
     USER=htpc-helper \
     HOME=/home/htpc-helper \
     UID=1100 \
@@ -37,8 +34,17 @@ RUN apt install -qy \
 # Set locale
 RUN locale-gen $LC_ALL
 
+# Install app dependencies
+RUN apt install -qy \
+      python-apt \
+      gdebi \
+      libgl1-mesa-dri:i386 \
+      libgl1-mesa-glx:i386 \
+      libc6:i386
+
 # Install applications
 RUN apt install -qy \
+      steam \
       kodi \
       kodi-pvr-hts \
       chromium-browser \
