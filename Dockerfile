@@ -52,6 +52,11 @@ RUN apt install -qy \
 RUN curl -o /tmp/tigervnc.tar.gz -L https://dl.bintray.com/tigervnc/stable/tigervnc-1.8.0.x86_64.tar.gz && \
     tar xf /tmp/tigervnc.tar.gz -C / --strip 1
 
+### Cleanup
+RUN apt autoremove -y && \
+    apt clean && \
+    rm -rf /tmp/* /var/tmp/*
+
 # Configure runit
 RUN mkdir /etc/service/vncserver
 COPY init/vncserver.sh /etc/service/vncserver/run
