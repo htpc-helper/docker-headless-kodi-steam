@@ -44,7 +44,6 @@ RUN apt install -qy \
 
 # Install applications
 RUN apt install -qy \
-      steam \
       kodi \
       kodi-pvr-hts \
       chromium-browser \
@@ -53,6 +52,10 @@ RUN apt install -qy \
     apt purge -qy \
       pm-utils \
       xscreensaver*
+
+### Install Steam
+RUN curl -o /tmp/steam.deb -L https://steamcdn-a.akamaihd.net/client/installer/steam.deb && \
+    dpkg -i /tmp/steam.deb
 
 ### Install TigerVNC
 RUN curl -o /tmp/tigervnc.tar.gz -L https://dl.bintray.com/tigervnc/stable/tigervnc-1.8.0.x86_64.tar.gz && \
