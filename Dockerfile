@@ -23,8 +23,7 @@ RUN useradd -m -d $HOME --uid $UID $USER
 
 # Add repos
 RUN apt-add-repository ppa:team-xbmc/ppa && \
-    dpkg --add-architecture i386 && \
-    dpkg --configure -a
+    dpkg --add-architecture i386
 
 # Update and upgrade
 RUN apt update -q && \
@@ -40,7 +39,6 @@ RUN locale-gen $LC_ALL
 
 # Install applications
 RUN apt install -qy \
-      steam \
       kodi \
       kodi-pvr-hts \
       chromium-browser \
