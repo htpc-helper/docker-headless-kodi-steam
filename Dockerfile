@@ -43,10 +43,11 @@ RUN apt install -qy \
       libc6:i386 \
       zenity-common \
       libwebkit2gtk-4.0-37 \
-      zenity \
+      zenity
 
 # Install applications
 RUN apt install -qy \
+      steam \
       kodi \
       kodi-pvr-hts \
       chromium-browser \
@@ -57,8 +58,8 @@ RUN apt install -qy \
       xscreensaver*
 
 ### Install Steam
-RUN curl -o /tmp/steam.deb -L https://steamcdn-a.akamaihd.net/client/installer/steam.deb && \
-    dpkg -i /tmp/steam.deb
+# RUN curl -o /tmp/steam.deb -L https://steamcdn-a.akamaihd.net/client/installer/steam.deb && \
+#     dpkg -i /tmp/steam.deb
 
 ### Install TigerVNC
 RUN curl -o /tmp/tigervnc.tar.gz -L https://dl.bintray.com/tigervnc/stable/tigervnc-1.8.0.x86_64.tar.gz && \
