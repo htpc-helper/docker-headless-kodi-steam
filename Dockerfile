@@ -40,7 +40,10 @@ RUN apt install -qy \
       gdebi \
       libgl1-mesa-dri:i386 \
       libgl1-mesa-glx:i386 \
-      libc6:i386
+      libc6:i386 \
+      zenity-common \
+      libwebkit2gtk-4.0-37 \
+      zenity \
 
 # Install applications
 RUN apt install -qy \
